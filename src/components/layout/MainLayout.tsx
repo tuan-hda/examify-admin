@@ -3,7 +3,7 @@ import useAxiosPrivate from 'hooks/useAxiosPrivate';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { getUserInfo, userType } from 'redux/features/auth/authSlice';
+import { getUserInfo, logOut, resetState, userType } from 'redux/features/auth/authSlice';
 import colorConfigs from '../../configs/colorConfigs';
 import { toggleBar } from '../../redux/features/appStateSlice';
 import { AppDispatch, RootState } from '../../redux/store';
@@ -18,6 +18,12 @@ const MainLayout = () => {
   const axiosPrivate = useAxiosPrivate();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    dispatch(logOut(axiosPrivate));
+    dispatch(resetState());
+    navigate('/login');
+  };
 
   useEffect(() => {
     if (user.email && location.pathname === '/') {
@@ -78,6 +84,23 @@ const MainLayout = () => {
       <Typography variant="h6" sx={{ fontWeight: 700 }}>
         Tài khoản của bạn chưa được uỷ quyền
       </Typography>
+
+      <PrimaryButton
+        onClick={handleClick}
+        variant="contained"
+        sx={{
+          width: '100%',
+          mt: '24px',
+          position: 'relative',
+          bgcolor: colors.grey.quiteDark,
+          '&:hover': {
+            bgcolor: colors.grey.bitDark,
+          },
+        }}
+      >
+        <LogoutIcon sx={{ position: 'absolute', left: '10px' }} />
+        Đăng xuất
+      </PrimaryButton>
     </Box>
   );
 };
