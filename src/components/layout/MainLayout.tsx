@@ -11,6 +11,7 @@ import Sidebar from '../common/Sidebar';
 import UnauthorizeState from 'assets/images/unauthorized_state.jpg';
 import PrimaryButton from 'components/common/PrimaryButton';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { colors } from 'theme';
 
 const MainLayout = () => {
   const { hideBar } = useSelector((store: RootState) => store.appState);
