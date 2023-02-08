@@ -9,6 +9,8 @@ import { toggleBar } from '../../redux/features/appStateSlice';
 import { AppDispatch, RootState } from '../../redux/store';
 import Sidebar from '../common/Sidebar';
 import UnauthorizeState from 'assets/images/unauthorized_state.jpg';
+import PrimaryButton from 'components/common/PrimaryButton';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const MainLayout = () => {
   const { hideBar } = useSelector((store: RootState) => store.appState);
